@@ -1,4 +1,5 @@
 import express from "express";
+import vehicleRoutes from './src/modules/vehicle/routes/VehicleRoutes.js'
 
 const app = express();
 const env = process.env;
@@ -14,6 +15,10 @@ app.get("/api/status", (req,res)=>{
         httpStatus: 200,
     })
 })
+
+app.use(vehicleRoutes);
+
+
 
 app.listen(PORT, ()=> {
     console.info(`Server started sucessfully at port ${PORT}`)
