@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken'
 
 class UserService {
 
+
     async findByEmail(req){
         try{
             const {email} = req.params;
