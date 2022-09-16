@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import UserException from "../../modules/user/exception/UserException.js";
 import {promisify} from "util"
 import * as httpStatus from '../httpStatus.js';
+import * as secrets from '../secrets.js'
 const emptySpace = " ";
 
 export default async(req, res, next) => {
@@ -17,7 +18,7 @@ export default async(req, res, next) => {
         }else{
             accessToken = authorization;
         }
-        const decoded = await promisify(jwt.verify)(accessToken, "keeeey")
+        const decoded = await promisify(jwt.verify)(accessToken, secrets.API_SECRET);
         req.authUser = decoded.authUser;
         return next();
 
