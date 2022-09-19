@@ -29,6 +29,7 @@ class VehicleService {
     async findById(req) {
         try{
             const { id } = req.params;
+            console.log(id);
             this.validateInformedId(id);
             const existingVehicle = await VehicleRepository.findById(id);
             if(!existingVehicle){

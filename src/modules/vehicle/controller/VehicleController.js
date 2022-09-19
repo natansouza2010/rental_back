@@ -13,8 +13,8 @@ class VehicleController {
         return res.status(vehicle.status).json(vehicle);
     }
     async findAll(req, res) {
-        let vehicles = await VehicleService.findAll();
-        return res.status(vehicle.status).json(vehicles);
+        let vehicle = await VehicleService.findAll();
+        return res.status(vehicle.status).json(vehicle);
     }
 
     async deleteVehicle(req,res){
