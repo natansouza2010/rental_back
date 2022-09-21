@@ -3,6 +3,7 @@ import VehicleService from '../service/VehicleService.js'
 class VehicleController {
 
     async createVehicle(req, res) {
+        console.log(req)
         let vehicle = await VehicleService.createVehicle(req);
         return res.status(vehicle.status).json(vehicle);
     }

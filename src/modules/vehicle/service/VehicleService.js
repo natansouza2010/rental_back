@@ -8,8 +8,8 @@ class VehicleService {
         try{
             let vehicleData = req.body;
         //PEGAR TOKEN
-        validateVehicleData(vehicleData);
-        let vehicle = createInitialVehicle(vehicleData);
+        this.validateVehicleData(vehicleData);
+        let vehicle = this.createInitialVehicle(vehicleData);
         let createdVehicle = await VehicleRepository.save(vehicle);
         let response = {
             status: SUCESS,
@@ -108,6 +108,7 @@ class VehicleService {
     }
 
     validateVehicleData(data){
+        console.log(data);
         if(!data){
             throw new VehicleException(BAD_REQUEST, 'The vehicle data is not informed')
         }

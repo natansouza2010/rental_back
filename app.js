@@ -18,7 +18,7 @@ app.get("/api/status", (req,res)=>{
         httpStatus: 200,
     })
 })
-
+app.use(express.json());
 app.use(vehicleRoutes);
 
 
