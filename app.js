@@ -2,6 +2,7 @@ import express from "express";
 import { createInitialData } from "./src/config/db/initialData.js";
 import { connectMongoDb } from "./src/config/db/mongoDbConfig.js";
 import vehicleRoutes from './src/modules/vehicle/routes/VehicleRoutes.js'
+import UserRoutes from './src/modules/user/routes/UserRoutes.js';
 
 const app = express();
 const env = process.env;
@@ -19,6 +20,7 @@ app.get("/api/status", (req,res)=>{
     })
 })
 app.use(express.json());
+app.use(UserRoutes)
 app.use(vehicleRoutes);
 
 

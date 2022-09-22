@@ -1,7 +1,33 @@
 import Vehicle from '../../modules/vehicle/model/Vehicle.js'
+import bcrypt from "bcrypt";
+import User from "../../modules/user/model/User.js";
 
 
 export async function createInitialData(){
+
+    try{
+      
+        let password = await bcrypt.hash("admin", 10);
+        console.log(password)
+        await User.create({
+            name: "User Admin",
+            email: "admin",
+            password: password,
+            role: "ADMIN",
+        })
+
+        await User.create({
+            name: "User Test 2",
+            email: "testeuser2@gmail.com",
+            password: password,
+            role: "USER",
+          });
+    }catch(err){
+        console.log(err)
+    }
+
+
+
     try{
         let existingData = await Vehicle.find();
         if(existingData && existingData.length > 0){

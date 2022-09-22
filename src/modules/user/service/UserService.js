@@ -1,5 +1,6 @@
 import UserRepository from "../repository/UserRepository.js";
 import * as httpStatus from "../../../config/httpStatus.js"
+import * as secrets from "../../../config/secrets.js"
 
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken'
@@ -23,6 +24,7 @@ class UserService {
                     id: user.id,
                     name: user.name,
                     email: user.email,
+                    role: user.role,
                 }
             }
         }catch(err){
@@ -70,6 +72,7 @@ class UserService {
             await this.validatePassword(password, user.password)
             const authUser = {id : user.id , name: user.name, email : user.email, role: user.role}
             const accessToken = jwt.sign({authUser}, secrets.API_SECRET ,{expiresIn: '1d'})
+            console.log(accessToken)
             let response = {
                 
                 status: httpStatus.SUCESS, 
