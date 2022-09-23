@@ -41,6 +41,7 @@ export async function createInitialData(){
             year: "2014",
             value: 8000,
             createdAt: new Date(),
+            status: "AVAILABLE"
         });
 
         let initialData = await Vehicle.find();

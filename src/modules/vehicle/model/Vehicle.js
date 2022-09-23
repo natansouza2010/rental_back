@@ -26,6 +26,10 @@ const VehicleSchema = new Schema(
             type: Date,
             required:true,
         },
+        status: {
+            type: String,
+            required: true,
+        }
 
     }
 )

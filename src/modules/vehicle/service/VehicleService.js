@@ -104,6 +104,7 @@ class VehicleService {
             year: vehicleData.year,
             value: vehicleData.value,
             createdAt: new Date(),
+            status: vehicleData.status,
         }
     }
 
@@ -111,6 +112,21 @@ class VehicleService {
         console.log(data);
         if(!data){
             throw new VehicleException(BAD_REQUEST, 'The vehicle data is not informed')
+        }
+    }
+
+    validateStatusVehicle(req){
+  
+        let {existingVehicle} = this.findById(req);
+        console.log("aquiiiiiiiii")
+        console.log(existingVehicle)
+        if(existingVehicle.status === "LOCKED"){
+            throw new VehicleException(BAD_REQUEST, "The vehicle is locked.")
+        }
+        return {
+            status: SUCESS,
+            existingVehicle
+
         }
     }
 }
