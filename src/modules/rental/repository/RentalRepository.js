@@ -1,4 +1,4 @@
-import Rental from "../model/Rental";
+import Rental from "../model/Rental.js";
 
 
 class RentalRepository{

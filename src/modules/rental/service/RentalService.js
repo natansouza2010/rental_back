@@ -1,5 +1,6 @@
 import VehicleService from "../../vehicle/service/VehicleService.js"; 
 import UserService from "../../user/service/UserService.js";
+import RentalRepository from '../repository/RentalRepository.js'
 import RentalException from "../exception/RentalException.js";
 import { BAD_REQUEST, UNAUTHORIZED, INTERNAL_SERVER_ERROR } from "../../../config/httpStatus.js";
 
@@ -9,12 +10,11 @@ class RentalService{
             let rentalData = req.body;
             this.validateRentalData(rentalData)
             this.validateVehicleData(rentalData.vehicle)
-            let vehicleAvailable = this.validateStatusVehicle(req);
+            this.validatePeriod(rentalData.period)
+            let vehicleAvailable = await this.validateStatusVehicle(rentalData.vehicle);
             const { authUser } = req;
             const {authorization} = req.headers;
-            let order = {
-                authUser, authorization, vehicleAvailable
-            }
+            let order = this.createRentalOrder(authUser,vehicleAvailable, rentalData.period);
             return order;
 
         }catch(err){
@@ -23,6 +23,30 @@ class RentalService{
     }
 
 
+    createRentalOrder(authUser, vehicle, period){
+        console.log("veiculo vindo ", vehicle)
+        return {
+            user: authUser,
+            vehicle: vehicle,
+            period: period,
+            valuePayment: this.calculateValuePayment(vehicle.value, period)
+
+
+
+        }
+        
+
+    }
+
+    calculateValuePayment(value, period){
+        return value * period
+    }
+
+    validatePeriod(period){
+        if(!period){
+            throw new RentalException(BAD_REQUEST, "The period not informed !")
+        }
+    }
 
     validateRentalData(rentalData){
         if(!rentalData){
@@ -35,12 +59,13 @@ class RentalService{
         }
     }
 
-    async validateStatusVehicle(req){
-        if(!req){
+    async validateStatusVehicle(vehicle){
+        if(!vehicle){
             throw new RentalException(BAD_REQUEST, "The vehicle must be informed")
         }
-        console.log(req)
-        return { existingVehicle } = await VehicleService.validateStatusVehicle(req)
+        const {existingVehicle} = await VehicleService.validateStatusVehicle(vehicle)
+        return existingVehicle
+        
        
     }
 

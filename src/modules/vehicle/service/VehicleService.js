@@ -109,25 +109,36 @@ class VehicleService {
     }
 
     validateVehicleData(data){
-        console.log(data);
         if(!data){
             throw new VehicleException(BAD_REQUEST, 'The vehicle data is not informed')
         }
     }
 
-    validateStatusVehicle(req){
-  
-        let {existingVehicle} = this.findById(req);
-        console.log("aquiiiiiiiii")
-        console.log(existingVehicle)
-        if(existingVehicle.status === "LOCKED"){
-            throw new VehicleException(BAD_REQUEST, "The vehicle is locked.")
-        }
-        return {
-            status: SUCESS,
-            existingVehicle
+    async validateStatusVehicle(idVehicle){
+        try{
+            console.log("id do veiculo: " , idVehicle)
+            const existingVehicle = await VehicleRepository.findById(idVehicle)
+            console.log()
+            console.log("aquiiiiiiiii")
+            console.log(existingVehicle)
+            if(existingVehicle.status === "LOCKED"){
+                throw new VehicleException(BAD_REQUEST, "The vehicle is locked.")
+            }
 
+            let response = {
+                status: SUCESS,
+                existingVehicle
+    
+            }
+            return response
+
+        }catch(err){
+            console.log(err)
         }
+  
+        
+       
+      
     }
 }
 
