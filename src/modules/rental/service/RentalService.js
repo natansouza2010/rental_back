@@ -15,7 +15,7 @@ class RentalService{
             const { authUser } = req;
             const {authorization} = req.headers;
             let order = this.createRentalOrder(authUser,vehicleAvailable, rentalData.period);
-            return order;
+            return await RentalRepository.createRental(order);
 
         }catch(err){
             console.log(err);
