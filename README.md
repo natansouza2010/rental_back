@@ -5,7 +5,7 @@
 Para iniciar o projeto:
 ```
 npm install 
-npm startDev
+npm startDev (irá rodar o script com nodemon app.js)
 ```
 
 ## Módulo de Usuário:
