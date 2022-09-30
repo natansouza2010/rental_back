@@ -4,7 +4,7 @@
 
 Para iniciar o projeto:
 ```
-npm i 
+npm install 
 npm startDev
 ```
 
