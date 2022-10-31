@@ -14,7 +14,7 @@ npm run startDev
 
 # Modulo de Pacotes
 - `node_modules:` Modulo criado pelo node, onde contém todas as dependências do projeto
-- `src:` Riz estrutural do projeto
+- `src:` Raiz estrutural do projeto
     - `config:` Local dos arquivos de configuração de middlewares e banco de dados (MongoDB)
     - `modules:` Diretório responsável por armazenar a regra de negócio de cada entidade do sistema
   sujar a raiz das entidades
