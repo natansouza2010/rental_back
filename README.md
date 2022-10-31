@@ -1,28 +1,47 @@
 # pw4
 
-## Documentação dos endpoints
-
-Para iniciar o projeto:
+# Rodando o Projeto
+## Para iniciar o projeto:
 ```
 npm install 
-npm startDev (irá rodar o script com nodemon app.js)
+npm run startDev
 ```
+# Modulo de Entidades
+- ` rental: ` Entidade relacional de aluguel de carros, sendo responsável por conectar um usuário a um carro que deseja alugar
+- ` user: ` Entidade de identificação de usuário, que consegue navegar na página através de um token de acesso gerado por requisição
+- ` vehicle: ` Produto acessado pelo usuário para a realização do aluguel
 
-## Módulo de Usuário:
 
+# Modulo de Pacotes
+` node_modules: `Modulo criado pelo node, onde contém todas as dependências do projeto
+` src: ` raiz estrutural do projeto
+    - ` config: ` local dos arquivos de configuração de middlewares e banco de dados (MongoDB)
+    - ` modules: ` diretório responsável por armazenar a regra de negócio de cada entidade do sistema
+        - ` Controller: ` Diretório responsável por tratar as requisições de acesso e/ou inserção de conteúdo da API
+        - ` Exception: ` Tratamento de excessão definidos na regra de negócio do modelo
+        - ` Model: ` Definição dos atributos das classes entity do sistema
+        - ` Repository: ` Camada responsável por fazer a conexão dos controllers com a tabela do banco de cada entidade
+        - ` Routes: ` Define as rotas utilizadas para os comandos de requisição
+        - ` Service: ` Injeção de dependência, classe usada para chamar a conexão entre controller e repository encapsulando a regra de negócio
+
+
+
+# Modódulo de Requisições
 Base URL: http://localhost:8082
 
-#### POST - /api/user/auth - Gera um token de acesso
+## Usuário:
+
+#### POST - http://localhost:8082/api/user/auth - Gera um token de acesso
 ```
 Headers:
 
 Content-Type: application/json
 Body:
-
 {
     "email": "admin",
     "password": "admin"
 }
+
 Resposta:
 
 {
@@ -35,11 +54,9 @@ Obs.: todos os endpoints precisam de um token
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoVXNlciI6eyJpZCI6MSwibmFtZSI6IlVzZXIgVGVzdCAxIiwiZW1haWwiOiJ0ZXN0ZXVzZXIxQGdtYWlsLmNvbSJ9LCJpYXQiOjE2MzM3OTk5MzUsImV4cCI6MTYzMzg4NjMzNX0.2AWPeoHSYUW_nGeLsx6rEOhm99ZfNZ8pQXPTJ0fwbDU
 
 ```
-## Módulo de Veicúlo:
+## Veicúlo:
 
-Base URL: http://localhost:8082
-
-#### POST - /api/vehicle/create - Cria um novo produto
+#### POST - http://localhost:8082/api/vehicle/create - Cria um novo produto
 ```
 Body:
 
@@ -66,7 +83,7 @@ Resposta:
   }
 }
 ```
-#### GET - /api/vehicle/{id} -Busca um veiculo
+#### GET - http://localhost:8082/api/vehicle/{id} -Busca um veiculo
 ```
 Resposta (parâmetro id = 633390fe062e4995dcc2d7f6):
 
@@ -85,7 +102,7 @@ Resposta (parâmetro id = 633390fe062e4995dcc2d7f6):
 }
 ```
 
-#### DELETE - /api/vehicle/{id} - Remove um veiculo
+#### DELETE - http://localhost:8082/api/vehicle/{id} - Remove um veiculo
 Resposta (parâmetro id = 633390fe062e4995dcc2d7f6):
 ```
 {
@@ -102,7 +119,7 @@ Resposta (parâmetro id = 633390fe062e4995dcc2d7f6):
   }
 }
 ```
-#### GET - /api/vehicles - Busca todos os veiculos
+#### GET - http://localhost:8082/api/vehicles - Busca todos os veiculos
 ```
 Resposta: {
 }
@@ -123,17 +140,17 @@ Resposta: {
   ]
 }
 ```
-## Módulo de Aluguel:
-Base URL: http://localhost:8082
+## Aluguel:
 
-#### POST - /api/rental/create - Cria um novo aluguel de veiculo
+#### POST - http://localhost:8082/api/rental/create - Cria um novo aluguel de veiculo
 ```
-BODY {
+Body:
+{
    "vehicle": "63338c7d026412a5b965261f",
    "period": 7
 }
 
-RESPOSTA:
+Resposta:
 {
   "user": {
     "id": "632ca65a518eac661f31456a",
