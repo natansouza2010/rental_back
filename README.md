@@ -13,17 +13,17 @@ npm run startDev
 
 
 # Modulo de Pacotes
-` node_modules: `Modulo criado pelo node, onde contém todas as dependências do projeto
-` src: ` raiz estrutural do projeto
-    - ` config: ` local dos arquivos de configuração de middlewares e banco de dados (MongoDB)
-    - ` modules: ` diretório responsável por armazenar a regra de negócio de cada entidade do sistema
-        - ` Controller: ` Diretório responsável por tratar as requisições de acesso e/ou inserção de conteúdo da API
-        - ` Exception: ` Tratamento de excessão definidos na regra de negócio do modelo
-        - ` Model: ` Definição dos atributos das classes entity do sistema
-        - ` Repository: ` Camada responsável por fazer a conexão dos controllers com a tabela do banco de cada entidade
-        - ` Routes: ` Define as rotas utilizadas para os comandos de requisição
-        - ` Service: ` Injeção de dependência, classe usada para chamar a conexão entre controller e repository encapsulando a regra de negócio
-
+- `node_modules:` Modulo criado pelo node, onde contém todas as dependências do projeto
+- `src:` Riz estrutural do projeto
+    - `config:` Local dos arquivos de configuração de middlewares e banco de dados (MongoDB)
+    - `modules:` Diretório responsável por armazenar a regra de negócio de cada entidade do sistema
+  sujar a raiz das entidades
+    - `Controller:` Diretório responsável por tratar as requisições de acesso e/ou inserção de conteúdo da API
+        - `Exception:` Tratamento de excessão definidos na regra de negócio do modelo
+        - `Model:` Definição dos atributos das classes entity do sistema
+        - `Repository:` Camada responsável por fazer a conexão dos controllers com a tabela do banco de cada entidade
+        - `Routes:` Define as rotas utilizadas para os comandos de requisição
+        - `Service:` Injeção de dependência, classe usada para chamar a conexão entre controller e repository encapsulando a regra de negócio
 
 
 # Modódulo de Requisições
